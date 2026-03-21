@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BemCare - Agendamento de Serviços de Autocuidado</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-heart-pulse"></i>
+                <span>BemCare</span>
+            </div>
+            <div class="header-actions hide" id="headerAction">
+                <button class="btn-header" onclick="showSection('profile')">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="btn-header" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section id="home" class="section active">
+            <div class="hero">
+                <h1>Cuidar de você nunca foi tão fácil</h1>
+                <p>Conectamos você aos melhores profissionais de saúde e bem-estar</p>
+                <button class="btn" onclick="checkAuthAndNavigate('services')">
+                    <i class="fas fa-calendar-check"></i>
+                    Agendar Agora
+                </button>
+            </div>
+
+            <div class="highlights">
+                <div class="highlight-card">
+                    <i class="fas fa-user-doctor"></i>
+                    <h3>Profissionais Qualificados</h3>
+                    <p>Especialistas verificados e experientes</p>
+                </div>
+                <div class="highlight-card">
+                    <i class="fas fa-calendar-days"></i>
+                    <h3>Agendamento Fácil</h3>
+                    <p>Marque sua consulta em poucos cliques</p>
+                </div>
+                <div class="highlight-card">
+                    <i class="fas fa-shield-halved"></i>
+                    <h3>100% Seguro</h3>
+                    <p>Seus dados protegidos e sigilosos</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section">
+            <h2 class="section-title">Buscar Serviços</h2>
+            <p class="section-subtitle">Escolha a categoria que você precisa</p>
+
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Buscar por especialidade ou profissional..." oninput="filterProfessionals()">
+            </div>
+
+            <div class="categories-grid">
+                <div class="category-card" data-category="all" onclick="filterByCategory('all')">
+                    <i class="fas fa-grip"></i>
+                    <h4>Todos</h4>
+                </div>
+                <div class="category-card" data-category="psicologia" onclick="filterByCategory('psicologia')">
+                    <i class="fas fa-brain"></i>
+                    <h4>Psicologia</h4>
+                </div>
+                <div class="category-card" data-category="fisioterapia" onclick="filterByCategory('fisioterapia')">
+                    <i class="fas fa-person-walking"></i>
+                    <h4>Fisioterapia</h4>
+                </div>
+                <div class="category-card" data-category="massagem" onclick="filterByCategory('massagem')">
+                    <i class="fas fa-spa"></i>
+                    <h4>Massagem</h4>
+                </div>
+                <div class="category-card" data-category="nutricao" onclick="filterByCategory('nutricao')">
+                    <i class="fas fa-apple-whole"></i>
+                    <h4>Nutrição</h4>
+                </div>
+                <div class="category-card" data-category="personal" onclick="filterByCategory('personal')">
+                    <i class="fas fa-dumbbell"></i>
+                    <h4>Personal</h4>
+                </div>
+            </div>
+
+            <div class="professionals-list" id="professionalsList"></div>
+        </section>
+
+        <section id="professional-detail" class="section">
+            <button class="back-btn" onclick="showSection('services')">
+                <i class="fas fa-arrow-left"></i>
+                Voltar
+            </button>
+            <div id="professionalDetailContent"></div>
+        </section>
+
+        <section id="booking" class="section">
+            <button class="back-btn" onclick="backToProfessionalDetail()">
+                <i class="fas fa-arrow-left"></i>
+                Voltar
+            </button>
+
+            <h2 class="section-title">Agendar Consulta</h2>
+            
+            <div class="booking-form">
+                <div id="bookingProfessionalInfo"></div>
+                
+                <div class="form-group">
+                    <label>Data da Consulta</label>
+                    <input type="date" id="bookingDate" onchange="generateTimeSlots()">
+                </div>
+
+                <div class="form-group">
+                    <label>Horário Disponível</label>
+                    <div class="time-slots" id="timeSlots"></div>
+                </div>
+
+                <div class="form-group">
+                    <label>Observações (Opcional)</label>
+                    <input type="text" id="bookingNotes" placeholder="Algo que o profissional deva saber...">
+                </div>
+
+                <button class="btn" onclick="confirmBooking()">
+                    <i class="fas fa-check-circle"></i>
+                    Confirmar Agendamento
+                </button>
+            </div>
+        </section>
+
+        <section id="booking-confirmation" class="section">
+            <div class="confirmation-box">
+                <div class="confirmation-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h2>Agendamento Confirmado!</h2>
+                <p>Seu agendamento foi realizado com sucesso</p>
+                
+                <div class="confirmation-details" id="confirmationDetails"></div>
+
+                <button class="btn" style="background: white; color: var(--primary);" onclick="showSection('my-bookings')">
+                    <i class="fas fa-calendar-check"></i>
+                    Ver Meus Agendamentos
+                </button>
+            </div>
+        </section>
+
+        <section id="my-bookings" class="section">
+            <h2 class="section-title">Meus Agendamentos</h2>
+            <div class="bookings-list" id="bookingsList"></div>
+        </section>
+
+        <section id="profile" class="section">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <h2 id="userName">Usuário</h2>
+                    <p id="userEmail">usuario@email.com</p>
+                </div>
+
+                <div class="user-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalBookings">0</span>
+                        <span class="stat-label">Agendamentos</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="completedBookings">0</span>
+                        <span class="stat-label">Realizados</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="cancelledBookings">0</span>
+                        <span class="stat-label">Cancelados</span>
+                    </div>
+                </div>
+
+                <button class="btn btn-secondary" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Sair da Conta
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="showSection('home')" data-section="home">
+            <i class="fas fa-home"></i>
+            <span>Início</span>
+        </div>
+        <div class="nav-item" onclick="checkAuthAndNavigate('services')" data-section="services">
+            <i class="fas fa-search"></i>
+            <span>Buscar</span>
+        </div>
+        <div class="nav-item" onclick="checkAuthAndNavigate('my-bookings')" data-section="my-bookings">
+            <i class="fas fa-calendar"></i>
+            <span>Agendas</span>
+        </div>
+        <div class="nav-item" onclick="checkAuthAndNavigate('profile')" data-section="profile">
+            <i class="fas fa-user"></i>
+            <span>Perfil</span>
+        </div>
+    </nav>
+
+    <div class="modal-overlay" id="authModal">
+        <div class="modal">
+            <h2 id="authTitle">Entrar na Conta</h2>
+            <form id="authForm" onsubmit="handleAuth(event)">
+                <div class="form-group" id="nameGroup" style="display: none;">
+                    <label>Nome Completo</label>
+                    <input type="text" id="authName" placeholder="Seu nome completo">
+                </div>
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" id="authEmail" placeholder="seu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" id="authPassword" placeholder="Sua senha" required>
+                </div>
+                <button type="submit" class="btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span id="authButtonText">Entrar</span>
+                </button>
+            </form>
+            <div class="modal-footer">
+                <span id="authFooterText">Não tem uma conta?</span>
+                <a onclick="toggleAuthMode()">Criar conta</a>
+            </div>
+        </div>
+    </div>
+</body>
