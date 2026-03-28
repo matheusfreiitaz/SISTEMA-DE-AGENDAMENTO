@@ -1,7 +1,7 @@
 
         // DATA
         const professionals = [
-            {
+            { 
                 id: 1,
                 name: 'Dra. Ana Silva',
                 specialty: 'Psicologia',
