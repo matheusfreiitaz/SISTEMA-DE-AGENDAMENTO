@@ -5,7 +5,7 @@
                 id: 1,
                 name: 'Dra. Ana Silva',
                 specialty: 'Psicologia',
-                category: 'psicologia',
+                category: 'psicologia', 
                 rating: 4.9,
                 reviews: 127, 
                 description: 'Psicóloga clínica com mais de 10 anos de experiência em terapia cognitivo-comportamental. Especialista em ansiedade, depressão e desenvolvimento pessoal.',
