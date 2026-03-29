@@ -1,0 +1,56 @@
+/* ═══════════════════════════════════════════════
+   BASE — Reset, Tipografia & Animações
+═══════════════════════════════════════════════ */
+
+/* ── Reset ── */
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0 }
+html { scroll-behavior:smooth; -webkit-text-size-adjust:100% }
+body {
+  font-family: var(--fb);
+  font-size: var(--fs, 1rem);
+  background: var(--bg);
+  color: var(--t2);
+  line-height: 1.65;
+  overflow-x: hidden;
+  padding-bottom: var(--bnav-h);
+  transition: background var(--tr), color var(--tr);
+}
+h1,h2,h3,h4 { font-family: var(--fh); color: var(--t1); line-height: 1.15 }
+button { cursor:pointer; font-family:inherit }
+input, select, textarea { font-family:inherit }
+img { display:block; max-width:100% }
+a { color: var(--p); text-decoration:none }
+
+/* ── Foco Visível (Acessibilidade) ── */
+:focus-visible {
+  outline: 2.5px solid var(--acc);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Skip Link ── */
+.skip-link {
+  position:fixed; top:-100px; left:50%; transform:translateX(-50%);
+  background:var(--acc); color:#fff; padding:.5rem 1.4rem;
+  border-radius:0 0 var(--r1) var(--r1);
+  font-weight:700; z-index:99999; text-decoration:none; transition:top .2s;
+}
+.skip-link:focus { top:0 }
+
+/* ── Animações ── */
+@keyframes fadeUp    { from{opacity:0;transform:translateY(20px)}  to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn    { from{opacity:0}                              to{opacity:1} }
+@keyframes scaleIn   { from{opacity:0;transform:scale(.94)}         to{opacity:1;transform:scale(1)} }
+@keyframes toastIn   { from{transform:translateX(130%);opacity:0}   to{transform:translateX(0);opacity:1} }
+@keyframes blink     { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes float     { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+@keyframes pulse     { 0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.4)} 70%{box-shadow:0 0 0 12px rgba(16,185,129,0)} }
+@keyframes spin      { to{transform:rotate(360deg)} }
+@keyframes gradMove  { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+@keyframes slideDown { from{opacity:0;transform:translateY(-10px)}  to{opacity:1;transform:translateY(0)} }
+@keyframes shimmer   { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+
+/* ── Utilitários ── */
+.hide          { display:none !important }
+.text-center   { text-align:center }
+.sep           { height:1.5px; background:var(--bdr); margin:1.5rem 0 }

@@ -1,0 +1,82 @@
+/* ═══════════════════════════════════════════════
+   DESIGN TOKENS — BemUai
+   Paleta de cores, tipografia, espaçamento e sombras
+═══════════════════════════════════════════════ */
+
+:root {
+  /* ── Cores Primárias ── */
+  --p:    #0F6B4F;
+  --p2:   #1A8C69;
+  --p3:   #E0F5EE;
+  --p4:   #c7edd9;
+
+  /* ── Cores de Destaque ── */
+  --acc:  #F97316;
+  --acc2: #FEF3C7;
+
+  /* ── Cores Complementares ── */
+  --blue:    #2563EB;
+  --blue2:   #EFF6FF;
+  --purple:  #7C3AED;
+  --purple2: #EDE9FE;
+
+  /* ── Fundos ── */
+  --bg:   #F3F7F5;
+  --bg2:  #EAF2ED;
+  --card: #FFFFFF;
+  --inp:  #F0F5F2;
+  --nav:  #FFFFFF;
+
+  /* ── Tipografia ── */
+  --t1:   #0C1F18;
+  --t2:   #2A4A3C;
+  --t3:   #6B8F80;
+  --inv:  #FFFFFF;
+
+  /* ── Bordas e Sombras ── */
+  --bdr:  #D0E8DC;
+  --s1:   0 1px 4px rgba(15,107,79,.06);
+  --s2:   0 4px 20px rgba(15,107,79,.10);
+  --s3:   0 16px 56px rgba(15,107,79,.15);
+  --s4:   0 2px 8px rgba(15,107,79,.08);
+
+  /* ── Status ── */
+  --ok:   #059669;
+  --warn: #D97706;
+  --err:  #DC2626;
+
+  /* ── Bordas Arredondadas ── */
+  --r1: 10px;
+  --r2: 16px;
+  --r3: 24px;
+  --r4: 36px;
+
+  /* ── Transição Global ── */
+  --tr: .22s cubic-bezier(.4,0,.2,1);
+
+  /* ── Fontes ── */
+  --fh: 'Fraunces', serif;
+  --fb: 'DM Sans', sans-serif;
+
+  /* ── Layout ── */
+  --nav-h:  68px;
+  --bnav-h: 72px;
+}
+
+/* ══ TEMA ESCURO ══ */
+[data-theme="dark"] {
+  --p: #10B981; --p2: #34D399; --p3: #063D2B; --p4: #0A2E20;
+  --acc: #FB923C; --acc2: #3D2100;
+  --bg: #090F0C; --bg2: #0E1912; --card: #111D16; --inp: #182618; --nav: #0C1710;
+  --t1: #E6F4EE; --t2: #9DC4B0; --t3: #5A7A6A;
+  --bdr: #1A3324; --inv: #0C1710;
+  --s1: 0 1px 4px rgba(0,0,0,.4);
+  --s2: 0 4px 20px rgba(0,0,0,.5);
+  --s3: 0 16px 56px rgba(0,0,0,.6);
+  --blue2: #1A2E4A; --purple2: #1E1533;
+}
+
+/* ══ TAMANHOS DE FONTE ══ */
+[data-font-size="normal"] { --fs: 1rem;    --fs-s:.875rem; --fs-l:1.125rem; --fs-xl:1.5rem;  --fs-h:2.4rem }
+[data-font-size="large"]  { --fs: 1.1rem;  --fs-s:.975rem; --fs-l:1.25rem;  --fs-xl:1.7rem;  --fs-h:2.7rem }
+[data-font-size="xlarge"] { --fs: 1.2rem;  --fs-s:1.05rem; --fs-l:1.35rem;  --fs-xl:1.9rem;  --fs-h:3rem }

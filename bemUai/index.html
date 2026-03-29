@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light" data-font-size="normal">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BemUai – Saúde ao seu alcance</title>
+
+  <!-- Fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Estilos modularizados -->
+  <link rel="stylesheet" href="src/css/tokens.css">
+  <link rel="stylesheet" href="src/css/base.css">
+  <link rel="stylesheet" href="src/css/components.css">
+  <link rel="stylesheet" href="src/css/layout.css">
+  <link rel="stylesheet" href="src/css/pages.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Pular para o conteúdo</a>
+
+<!-- ══ A11Y PANEL ══ -->
+<div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="Acessibilidade" aria-hidden="true">
+  <h3><i class="fas fa-universal-access"></i> Acessibilidade</h3>
+  <div class="a11y-row">
+    <label for="tglTheme"><i class="fas fa-moon"></i> Modo Escuro</label>
+    <label class="tgl"><input type="checkbox" id="tglTheme" onchange="a11y.setTheme(this.checked)"><span class="tgl-s"></span></label>
+  </div>
+  <div class="a11y-row">
+    <label><i class="fas fa-text-height"></i> Tamanho da Fonte</label>
+    <div class="a11y-btns">
+      <button class="abt on" id="fs-normal" onclick="a11y.setFS('normal')" aria-label="Fonte normal">A</button>
+      <button class="abt" id="fs-large"    onclick="a11y.setFS('large')"  aria-label="Fonte grande">A+</button>
+      <button class="abt" id="fs-xlarge"   onclick="a11y.setFS('xlarge')" aria-label="Fonte extra grande">A++</button>
+    </div>
+  </div>
+  <div class="a11y-row">
+    <label for="tglContrast"><i class="fas fa-adjust"></i> Alto Contraste</label>
+    <label class="tgl"><input type="checkbox" id="tglContrast" onchange="a11y.setContrast(this.checked)"><span class="tgl-s"></span></label>
+  </div>
+  <div class="a11y-row">
+    <label for="tglDys"><i class="fas fa-book-open"></i> Fonte Dislexia</label>
+    <label class="tgl"><input type="checkbox" id="tglDys" onchange="a11y.setDys(this.checked)"><span class="tgl-s"></span></label>
+  </div>
+  <div class="a11y-row">
+    <label for="tglMotion"><i class="fas fa-wind"></i> Reduzir Animações</label>
+    <label class="tgl"><input type="checkbox" id="tglMotion" onchange="a11y.setMotion(this.checked)"><span class="tgl-s"></span></label>
+  </div>
+</div>
+
+<!-- ══ HEADER ══ -->
+<header class="header">
+  <div class="hdr-inner">
+    <div class="logo" onclick="nav.go('home')" role="link" tabindex="0" aria-label="BemUai início">
+      <i class="fas fa-heart-pulse"></i>
+      Bem<span class="logo-dot">Uai</span>
+      <span class="logo-sub">Saúde</span>
+    </div>
+    <nav class="hdr-desk" aria-label="Principal">
+      <button class="hdr-link" onclick="nav.go('home')"             data-nav="home">      <i class="fas fa-home"></i> Início</button>
+      <button class="hdr-link" onclick="auth.auth('virtual')"       data-nav="virtual"    style="background:rgba(124,58,237,.85);border-color:rgba(167,139,250,.5)"><i class="fas fa-robot"></i> Assistente Virtual</button>
+      <button class="hdr-link" onclick="auth.auth('services')"      data-nav="services">  <i class="fas fa-user-doctor"></i> Área Médica</button>
+      <button class="hdr-link" onclick="auth.auth('agendamento')"   data-nav="agendamento"><i class="fas fa-calendar-check"></i> Agendamento</button>
+      <button class="hdr-link" onclick="auth.auth('exames')"        data-nav="exames">    <i class="fas fa-flask"></i> Exames</button>
+    </nav>
+    <div class="hdr-right">
+      <div class="greet-chip" id="greetChip" style="display:none"><i class="fas fa-user-circle"></i><span id="greetName">Olá!</span></div>
+      <button class="bi" onclick="a11y.quickTheme()" id="themeBtn" aria-label="Alternar tema"><i class="fas fa-moon"></i></button>
+      <button class="bi" onclick="a11y.toggleA11y()" id="a11yBtn" aria-label="Acessibilidade" aria-expanded="false"><i class="fas fa-universal-access"></i></button>
+      <div id="hdrAuth" class="hide" style="display:contents">
+        <button class="bi" onclick="auth.auth('profile')" aria-label="Meu Perfil"><i class="fas fa-user-circle"></i></button>
+        <button class="bi" onclick="auth.logout()"        aria-label="Sair"><i class="fas fa-sign-out-alt"></i></button>
+      </div>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="nav.toggleMobileMenu()" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ══ MOBILE MENU ══ -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-nav-link" onclick="nav.go('home');nav.closeMobileMenu()"><i class="fas fa-home"></i> Início</div>
+  <div class="mobile-nav-link" onclick="auth.auth('virtual');nav.closeMobileMenu()"     style="color:#A78BFA"><i class="fas fa-robot"></i> Assistente Virtual</div>
+  <div class="mobile-nav-link" onclick="auth.auth('services');nav.closeMobileMenu()">   <i class="fas fa-user-doctor"></i> Área Médica</div>
+  <div class="mobile-nav-link" onclick="auth.auth('agendamento');nav.closeMobileMenu()"><i class="fas fa-calendar-check"></i> Agendamento</div>
+  <div class="mobile-nav-link" onclick="auth.auth('exames');nav.closeMobileMenu()">     <i class="fas fa-flask"></i> Exames</div>
+  <div class="mobile-divider"></div>
+  <div id="mobileAuthLinks">
+    <div class="mobile-nav-link" onclick="auth.auth('profile');nav.closeMobileMenu()"><i class="fas fa-user-circle"></i> Meu Perfil</div>
+    <div class="mobile-nav-link" onclick="auth.logout();nav.closeMobileMenu()" style="color:#F87171"><i class="fas fa-sign-out-alt"></i> Sair</div>
+  </div>
+  <div id="mobileGuestLink">
+    <div class="mobile-nav-link" onclick="auth.showAuth();nav.closeMobileMenu()" style="color:#4ADE80"><i class="fas fa-sign-in-alt"></i> Entrar / Criar Conta</div>
+  </div>
+</div>
+
+<!-- ══ MAIN ══ -->
+<main class="main" id="main" tabindex="-1">
+
+  <!-- HOME -->
+  <section id="home" class="section active" aria-label="Início">
+    <div class="dash-header">
+      <div class="dash-badge"><i class="fas fa-circle"></i> Sistema Ativo</div>
+      <p class="dash-greeting" id="dashGreeting" style="opacity:.82;font-size:.9rem;margin-bottom:.4rem;position:relative;z-index:1"></p>
+      <h1 class="dash-title">Saúde ao seu<br>alcance.</h1>
+      <p class="dash-subtitle">Agende consultas, fale com nossa IA médica e acesse seus resultados de exames — tudo em um só lugar.</p>
+      <div class="dash-cta">
+        <button class="btn" onclick="auth.auth('agendamento')"><i class="fas fa-calendar-check"></i> Agendar Consulta</button>
+        <button class="btn btn-out" onclick="auth.auth('virtual')"><i class="fas fa-robot"></i> Assistente Virtual</button>
+      </div>
+    </div>
+    <div class="quick-grid">
+      <div class="qcard qcard-purple" onclick="auth.auth('virtual')"     tabindex="0" role="button"><div class="qcard-icon"><i class="fas fa-robot"></i></div><h4>Assistente Virtual</h4><p>IA para análise de sintomas</p></div>
+      <div class="qcard qcard-green"  onclick="auth.auth('services')"    tabindex="0" role="button"><div class="qcard-icon"><i class="fas fa-user-doctor"></i></div><h4>Área Médica</h4><p>Especialistas disponíveis</p></div>
+      <div class="qcard qcard-orange" onclick="auth.auth('my-bookings')" tabindex="0" role="button"><div class="qcard-icon"><i class="fas fa-calendar-check"></i></div><h4>Agendamentos</h4><p>Gerencie suas consultas</p></div>
+      <div class="qcard qcard-blue"   onclick="auth.auth('exames')"      tabindex="0" role="button"><div class="qcard-icon"><i class="fas fa-flask"></i></div><h4>Exames</h4><p>Resultados e laudos</p></div>
+    </div>
+    <div class="next-banner">
+      <div class="next-icon"><i class="fas fa-calendar-alt"></i></div>
+      <div class="next-info"><h4>Próximos Passos</h4><p>Agende sua primeira consulta para começar seu cuidado integral de saúde</p></div>
+      <button class="btn btn-sm" onclick="auth.auth('agendamento')">Agendar</button>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-num" id="st1">0</div><div class="stat-label">Consultas Agendadas</div><div class="stat-trend"><i class="fas fa-calendar"></i> Total geral</div></div>
+      <div class="stat-card"><div class="stat-num">6</div><div class="stat-label">Especialistas</div><div class="stat-trend"><i class="fas fa-circle" style="font-size:.45rem"></i> Disponíveis agora</div></div>
+      <div class="stat-card"><div class="stat-num">6</div><div class="stat-label">Tipos de Exame</div><div class="stat-trend"><i class="fas fa-flask"></i> Para agendar</div></div>
+      <div class="stat-card"><div class="stat-num">24h</div><div class="stat-label">Suporte IA</div><div class="stat-trend"><i class="fas fa-robot"></i> Sempre disponível</div></div>
+    </div>
+  </section>
+
+  <!-- ASSISTENTE VIRTUAL -->
+  <section id="virtual" class="section" aria-label="Assistência Virtual">
+    <div class="sec-head"><h2 class="sec-title"><i class="fas fa-robot" style="color:var(--purple)"></i> Assistência Virtual</h2><p class="sec-sub">Nossa IA analisa seus sintomas — disponível 24 horas</p></div>
+    <div class="ai-badge"><i class="fas fa-sparkles"></i> Powered by IA · BemBot v2</div>
+    <div class="chat-wrap" role="region" aria-label="Chat assistente">
+      <div class="chat-hdr">
+        <div class="bot-avatar" aria-hidden="true"><i class="fas fa-robot"></i></div>
+        <div class="chat-hdr-info"><h3>BemBot</h3><p><span class="online-dot"></span> Online · Respondendo em segundos</p></div>
+        <button class="bi" onclick="chat.initChat()" aria-label="Reiniciar" style="margin-left:auto"><i class="fas fa-rotate-right"></i></button>
+      </div>
+      <div class="chat-body" id="chatBody" aria-live="polite"></div>
+      <div class="chat-input-area">
+        <input class="chat-input" id="chatInput" type="text" placeholder="Descreva seus sintomas…" aria-label="Mensagem" onkeydown="if(event.key==='Enter')chat.sendChat()">
+        <button class="chat-send" onclick="chat.sendChat()" aria-label="Enviar"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFISSIONAIS -->
+  <section id="services" class="section" aria-label="Área Médica">
+    <div class="sec-head"><h2 class="sec-title">Área Médica</h2><p class="sec-sub">Escolha o especialista ideal para o seu cuidado</p></div>
+    <div class="search-bar" role="search"><i class="fas fa-search"></i><input type="search" id="searchInput" placeholder="Buscar por nome, especialidade…" oninput="profs.renderProfs()" aria-label="Buscar profissional"></div>
+    <div class="cats" role="list" id="catList">
+      <div class="cat active" data-c="all"        onclick="profs.setCat('all')"        role="listitem" tabindex="0"><i class="fas fa-grip"></i> Todos</div>
+      <div class="cat" data-c="psicologia"        onclick="profs.setCat('psicologia')" role="listitem" tabindex="0"><i class="fas fa-brain"></i> Psicologia</div>
+      <div class="cat" data-c="fisioterapia"      onclick="profs.setCat('fisioterapia')" role="listitem" tabindex="0"><i class="fas fa-person-walking"></i> Fisioterapia</div>
+      <div class="cat" data-c="massagem"          onclick="profs.setCat('massagem')"   role="listitem" tabindex="0"><i class="fas fa-spa"></i> Massagem</div>
+      <div class="cat" data-c="nutricao"          onclick="profs.setCat('nutricao')"   role="listitem" tabindex="0"><i class="fas fa-apple-whole"></i> Nutrição</div>
+      <div class="cat" data-c="personal"          onclick="profs.setCat('personal')"   role="listitem" tabindex="0"><i class="fas fa-dumbbell"></i> Personal</div>
+      <div class="cat" data-c="neurologia"        onclick="profs.setCat('neurologia')" role="listitem" tabindex="0"><i class="fas fa-brain"></i> Neurologia</div>
+    </div>
+    <div class="prof-grid" id="profGrid" aria-live="polite"></div>
+  </section>
+
+  <!-- PROF DETAIL -->
+  <section id="prof-detail" class="section" aria-label="Detalhes do profissional">
+    <button class="back-btn" onclick="nav.go('services')"><i class="fas fa-arrow-left"></i> Voltar</button>
+    <div id="profDetailContent"></div>
+  </section>
+
+  <!-- AGENDAMENTO -->
+  <section id="agendamento" class="section" aria-label="Agendar consulta">
+    <button class="back-btn" id="bookBackBtn" onclick="nav.goBookBack(profs.getCurProf())"><i class="fas fa-arrow-left"></i> Voltar</button>
+    <div class="sec-head"><h2 class="sec-title">Agendar Consulta</h2><p class="sec-sub">Escolha data, horário e profissional</p></div>
+    <div id="bookProfInfo"></div>
+    <div class="booking-layout">
+      <div>
+        <div class="book-card">
+          <h3><i class="fas fa-calendar"></i> Selecione a Data</h3>
+          <div class="cal-nav">
+            <button class="cal-nav-btn" onclick="cal.calPrev()" aria-label="Mês anterior"><i class="fas fa-chevron-left"></i></button>
+            <span id="calMonthLabel" style="font-family:var(--fh)"></span>
+            <button class="cal-nav-btn" onclick="cal.calNext()" aria-label="Próximo mês"><i class="fas fa-chevron-right"></i></button>
+          </div>
+          <div class="cal-grid" id="calGrid" role="grid"></div>
+        </div>
+        <div class="book-card" style="margin-top:1.1rem">
+          <h3><i class="fas fa-clock"></i> Horários Disponíveis</h3>
+          <div id="timePlaceholder" style="color:var(--t3);font-size:var(--fs-s);padding:.5rem 0"><i class="fas fa-info-circle"></i> Selecione uma data para ver os horários</div>
+          <div class="time-grid" id="timeGrid" role="listbox" style="display:none"></div>
+        </div>
+      </div>
+      <div>
+        <div class="book-card">
+          <h3><i class="fas fa-user-doctor"></i> Profissional e Dados</h3>
+          <div class="field">
+            <label for="bkSpec">Especialidade</label>
+            <select id="bkSpec" onchange="cal.updateProfFromSpec()">
+              <option value="">Selecionar especialidade…</option>
+              <option value="psicologia">Psicologia</option>
+              <option value="fisioterapia">Fisioterapia</option>
+              <option value="massagem">Massagem Terapêutica</option>
+              <option value="nutricao">Nutrição</option>
+              <option value="personal">Personal Trainer</option>
+              <option value="neurologia">Neurologia</option>
+            </select>
+          </div>
+          <div class="field"><label>Profissional Disponível</label><div id="availProfs" style="display:flex;flex-direction:column;gap:.5rem"></div></div>
+          <div class="field"><label for="bkModality">Modalidade</label><select id="bkModality"><option value="presencial">Presencial</option><option value="online">Online (Videochamada)</option></select></div>
+          <div class="field"><label for="bkNotes">Observações (opcional)</label><input type="text" id="bkNotes" placeholder="Algo que o profissional deva saber…"></div>
+          <div id="bkSummary" style="display:none" class="field"><label>Resumo</label><div id="bkSummaryContent" style="background:var(--inp);border:1.5px solid var(--bdr);border-radius:var(--r1);padding:1rem;font-size:var(--fs-s);line-height:1.85"></div></div>
+          <button class="btn btn-full" onclick="cal.confirmBooking()" style="margin-top:.5rem"><i class="fas fa-check-circle"></i> Confirmar Agendamento</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFIRMAÇÃO -->
+  <section id="book-confirm" class="section" aria-label="Agendamento confirmado" aria-live="polite">
+    <div class="confirm-box" role="status">
+      <div class="confirm-icon" aria-hidden="true"><i class="fas fa-check"></i></div>
+      <h2>Agendamento Confirmado!</h2>
+      <p>Sua consulta foi agendada com sucesso 🎉</p>
+      <div class="confirm-whatsapp-note"><i class="fab fa-whatsapp"></i><span>Uma mensagem foi enviada para o telefone cadastrado.</span></div>
+      <div class="confirm-details" id="confirmDetails"></div>
+      <button class="btn" onclick="nav.go('my-bookings')"><i class="fas fa-calendar-check"></i> Ver Meus Agendamentos</button>
+      <button class="btn btn-out" onclick="nav.go('home')" style="margin-top:.6rem;border-color:rgba(255,255,255,.5);color:white"><i class="fas fa-home"></i> Voltar ao Início</button>
+    </div>
+  </section>
+
+  <!-- EXAMES -->
+  <section id="exames" class="section" aria-label="Exames">
+    <div class="sec-head"><h2 class="sec-title">Exames</h2><p class="sec-sub">Agende exames e baixe seus laudos médicos</p></div>
+    <div class="exam-filter-row">
+      <button class="cat active" data-ef="all"         onclick="exams.setExamFilter('all')">        <i class="fas fa-grip"></i> Todos</button>
+      <button class="cat"        data-ef="laboratorio" onclick="exams.setExamFilter('laboratorio')"><i class="fas fa-flask"></i> Laboratório</button>
+      <button class="cat"        data-ef="imagem"      onclick="exams.setExamFilter('imagem')">    <i class="fas fa-x-ray"></i> Imagem</button>
+      <button class="cat"        data-ef="cardiologia" onclick="exams.setExamFilter('cardiologia')"><i class="fas fa-heart-pulse"></i> Cardiologia</button>
+    </div>
+    <div class="exam-grid" id="examGrid" style="margin-bottom:2rem"></div>
+    <div class="sec-head"><h3 class="sec-title" style="font-size:var(--fs-l)">Meus Resultados</h3><p class="sec-sub">Clique em "Ver Laudo" para baixar o documento</p></div>
+    <div style="background:var(--card);border:1.5px solid var(--bdr);border-radius:var(--r2);overflow:hidden">
+      <table class="exam-result-table" aria-label="Resultados de exames">
+        <thead><tr><th>Exame</th><th>Data</th><th>Instituição</th><th>Status</th><th>Ação</th></tr></thead>
+        <tbody id="examResultTable"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- AGENDAMENTOS -->
+  <section id="my-bookings" class="section" aria-label="Meus agendamentos">
+    <div class="sec-head"><h2 class="sec-title">Meus Agendamentos</h2><p class="sec-sub">Gerencie todas as suas consultas</p></div>
+    <div class="bookings-list" id="bookingsList" aria-live="polite"></div>
+  </section>
+
+  <!-- PERFIL -->
+  <section id="profile" class="section" aria-label="Meu perfil">
+    <div class="profile-page">
+      <div class="profile-banner">
+        <div class="p-avatar"><i class="fas fa-user"></i></div>
+        <h2 class="p-name" id="pName">Usuário</h2>
+        <p class="p-email" id="pEmail">usuario@email.com</p>
+      </div>
+      <div class="prof-stats">
+        <div class="pstat"><div class="pstat-num" id="ps1">0</div><div class="pstat-label">Consultas</div></div>
+        <div class="pstat"><div class="pstat-num" id="ps2">0</div><div class="pstat-label">Confirmadas</div></div>
+        <div class="pstat"><div class="pstat-num" id="ps3">0</div><div class="pstat-label">Canceladas</div></div>
+      </div>
+      <div class="profile-card">
+        <h3><i class="fas fa-circle-info"></i> Informações Pessoais</h3>
+        <ul class="info-list" style="list-style:none">
+          <li><i class="fas fa-user"></i><span id="piName" style="color:var(--t1);font-weight:600">—</span></li>
+          <li><i class="fas fa-id-card"></i><span id="piCpf" style="color:var(--t1);font-weight:600">—</span></li>
+          <li><i class="fas fa-phone"></i><span id="piPhone" style="color:var(--t1);font-weight:600">—</span></li>
+          <li><i class="fas fa-envelope"></i><span id="piEmail" style="color:var(--t1);font-weight:600">—</span></li>
+          <li><i class="fas fa-calendar-alt"></i><span id="piSince" style="color:var(--t3)">Membro desde —</span></li>
+        </ul>
+      </div>
+      <div class="profile-card">
+        <h3><i class="fas fa-sliders"></i> Preferências de Acessibilidade</h3>
+        <div class="pref-row"><span><i class="fas fa-moon"></i> Modo Escuro</span><label class="tgl"><input type="checkbox" id="profileTheme" onchange="a11y.setTheme(this.checked)"><span class="tgl-s"></span></label></div>
+        <div class="pref-row"><span><i class="fas fa-adjust"></i> Alto Contraste</span><label class="tgl"><input type="checkbox" id="profileContrast" onchange="a11y.setContrast(this.checked)"><span class="tgl-s"></span></label></div>
+        <div class="pref-row"><span><i class="fas fa-book-open"></i> Fonte Dislexia</span><label class="tgl"><input type="checkbox" id="profileDys" onchange="a11y.setDys(this.checked)"><span class="tgl-s"></span></label></div>
+        <div class="pref-row"><span><i class="fas fa-wind"></i> Reduzir Animações</span><label class="tgl"><input type="checkbox" id="profileMotion" onchange="a11y.setMotion(this.checked)"><span class="tgl-s"></span></label></div>
+      </div>
+      <button class="btn btn-out btn-full" onclick="auth.logout()" style="margin-top:.5rem"><i class="fas fa-sign-out-alt"></i> Sair da Conta</button>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══ BOTTOM NAV ══ -->
+<nav class="bnav" aria-label="Navegação principal">
+  <button class="ni active" onclick="nav.go('home')"            data-s="home"        aria-label="Início"><i class="fas fa-home"></i><span>Início</span></button>
+  <button class="ni"        onclick="auth.auth('virtual')"      data-s="virtual"     aria-label="Assistente"><i class="fas fa-robot"></i><span>Bot</span></button>
+  <button class="ni"        onclick="auth.auth('services')"     data-s="services"    aria-label="Médicos"><i class="fas fa-user-doctor"></i><span>Médicos</span></button>
+  <button class="ni"        onclick="auth.auth('agendamento')"  data-s="agendamento" aria-label="Agendar"><i class="fas fa-calendar-check"></i><span>Agendar</span></button>
+  <button class="ni"        onclick="auth.auth('exames')"       data-s="exames"      aria-label="Exames"><i class="fas fa-flask"></i><span>Exames</span></button>
+</nav>
+
+<!-- ══ TOAST ══ -->
+<div id="toast-cnt" aria-live="assertive"></div>
+
+<!-- ══ AUTH MODAL ══ -->
+<div class="overlay" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+  <div class="modal">
+    <button class="modal-close" onclick="auth.hideAuth()" aria-label="Fechar"><i class="fas fa-times"></i></button>
+    <div style="text-align:center;margin-bottom:.5rem"><i class="fas fa-heart-pulse" style="font-size:2rem;color:var(--p)"></i></div>
+    <h2 id="authTitle">Bem-vindo ao BemUai</h2>
+    <p class="modal-sub" id="authSub">Entre para agendar consultas e muito mais</p>
+    <form id="authForm" onsubmit="auth.handleAuth(event)" novalidate>
+      <div id="nameField" style="display:none">
+        <div class="field"><label for="authName">Nome Completo *</label><input type="text" id="authName" placeholder="Seu nome completo" autocomplete="name"><div class="field-error" id="nameErr">Preencha seu nome completo</div></div>
+        <div class="field"><label for="authCpf">CPF *</label><input type="text" id="authCpf" placeholder="000.000.000-00" maxlength="14" oninput="auth.maskCPF(this)"><div class="field-note"><i class="fas fa-lock"></i> Seus dados são protegidos</div><div class="field-error" id="cpfErr">CPF inválido</div></div>
+        <div class="field"><label for="authPhone">Telefone / WhatsApp *</label><input type="tel" id="authPhone" placeholder="(31) 99999-9999" maxlength="15" oninput="auth.maskPhone(this)"><div class="field-note"><i class="fab fa-whatsapp" style="color:#25D366"></i> Confirmações serão enviadas aqui</div><div class="field-error" id="phoneErr">Telefone inválido</div></div>
+      </div>
+      <div class="field"><label for="authEmail">E-mail *</label><input type="email" id="authEmail" placeholder="seu@email.com" required autocomplete="email"><div class="field-error" id="emailErr">E-mail inválido</div></div>
+      <div class="field"><label for="authPass">Senha *</label><input type="password" id="authPass" placeholder="Mínimo 6 caracteres" required oninput="auth.checkPwd(this.value)"><div class="pwd-strength" id="pwdStr"><div class="pwd-bar" id="pwdBar"></div></div><div class="pwd-label" id="pwdLabel" style="color:var(--t3)"></div><div class="field-error" id="passErr">Senha deve ter mínimo 6 caracteres</div></div>
+      <div id="confirmPassField" style="display:none"><div class="field"><label for="authPassConfirm">Confirmar Senha *</label><input type="password" id="authPassConfirm" placeholder="Repita a senha"><div class="field-error" id="passConfirmErr">Senhas não coincidem</div></div></div>
+      <button type="submit" class="btn"><i class="fas fa-sign-in-alt"></i><span id="authBtnTxt">Entrar</span></button>
+    </form>
+    <div class="divider">ou</div>
+    <div class="modal-foot"><span id="authFootTxt">Não tem conta?</span> <a onclick="auth.toggleAuth()" tabindex="0">Criar conta gratuita</a></div>
+  </div>
+</div>
+
+<!-- ══ LAUDO MODAL ══ -->
+<div class="overlay" id="laudoModal" role="dialog" aria-modal="true" aria-labelledby="laudoTitle">
+  <div class="modal" style="max-width:520px">
+    <button class="modal-close" onclick="exams.hideLaudo()" aria-label="Fechar"><i class="fas fa-times"></i></button>
+    <h2 id="laudoTitle">Laudo Médico</h2>
+    <p class="modal-sub">Visualize e baixe o laudo completo</p>
+    <div id="laudoContent"></div>
+    <button class="btn btn-full" onclick="exams.downloadLaudo()" id="laudoDownloadBtn"><i class="fas fa-download"></i> Baixar Laudo (.txt)</button>
+  </div>
+</div>
+
+<!-- ══ APP ENTRYPOINT ══ -->
+<script type="module">
+  import * as authMod  from './src/js/auth.js';
+  import * as navMod   from './src/js/navigation.js';
+  import * as a11yMod  from './src/js/a11y.js';
+  import * as chatMod  from './src/js/chat.js';
+  import * as profsMod from './src/js/professionals.js';
+  import * as calMod   from './src/js/booking-calendar.js';
+  import * as examsMod from './src/js/exams.js';
+  import * as bkMod    from './src/js/bookings.js';
+
+  /* Expõe módulos globalmente para callbacks inline do HTML */
+  window.auth  = authMod;
+  window.nav   = navMod;
+  window.a11y  = a11yMod;
+  window.chat  = chatMod;
+  window.profs = profsMod;
+  window.cal   = calMod;
+  window.exams = examsMod;
+
+  /* Inicialização */
+  a11yMod.loadA11y();
+  authMod.loadUser();
+  profsMod.renderProfs();
+  examsMod.renderExams();
+  examsMod.renderExamResults();
+  calMod.buildCal();
+  chatMod.initChat();
+
+  const h = new Date().getHours();
+  document.getElementById('dashGreeting').textContent = h<12 ? 'Bom dia 👋' : h<18 ? 'Boa tarde 👋' : 'Boa noite 👋';
+
+  /* Fecha painéis ao clicar fora */
+  document.addEventListener('click', e => {
+    const p = document.getElementById('a11yPanel'), b = document.getElementById('a11yBtn');
+    if (p.classList.contains('open') && !p.contains(e.target) && !b.contains(e.target)) a11yMod.closeA11y();
+    const mm = document.getElementById('mobileMenu'), hb = document.getElementById('hamburger');
+    if (mm.classList.contains('open') && !mm.contains(e.target) && !hb.contains(e.target)) navMod.closeMobileMenu();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { authMod.hideAuth(); examsMod.hideLaudo(); a11yMod.closeA11y(); navMod.closeMobileMenu(); }
+  });
+  document.getElementById('authModal').addEventListener('click',  e => { if (e.target.id === 'authModal')  authMod.hideAuth(); });
+  document.getElementById('laudoModal').addEventListener('click', e => { if (e.target.id === 'laudoModal') examsMod.hideLaudo(); });
+</script>
+</body>
+</html>
