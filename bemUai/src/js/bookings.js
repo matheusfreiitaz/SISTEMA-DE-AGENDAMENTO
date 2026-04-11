@@ -1,7 +1,7 @@
 /**
  * bookings.js — BemUai
  * Módulo de gerenciamento de agendamentos
- */
+ */ 
 
 import { getUser }      from './auth.js';
 import { toast, fmtDateLong, fmtDateShort } from './utils.js';
