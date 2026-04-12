@@ -2,7 +2,7 @@
  * data.js — BemUai
  * Dados estáticos: profissionais, avaliações, exames e laudos
  */
- 
+  
 export const PROFS = [
   {
     id: 1,
