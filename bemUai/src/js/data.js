@@ -6,7 +6,7 @@
 export const PROFS = [
   {
     id: 1,
-    name: 'Dra. Ana Silva',
+    name: 'Dra. Ana Silva', 
     spec: 'Psicologia',
     cat: 'psicologia',
     rating: 4.9,
