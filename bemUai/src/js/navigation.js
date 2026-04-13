@@ -7,7 +7,7 @@ import { auth } from './auth.js';
 
 export function go(id) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  const t = document.getElementById(id);
+  const t = document.getElementById(id); 
   if (t) { t.classList.add('active'); setTimeout(() => t.focus(), 50); }
 
   document.querySelectorAll('.ni').forEach(n => n.classList.remove('active'));
