@@ -3,7 +3,7 @@
  * Controle de roteamento entre seções (SPA)
  */
 
-import { auth } from './auth.js';
+import { auth } from './auth.js'; 
 
 export function go(id) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
