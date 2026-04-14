@@ -6,7 +6,7 @@
                 name: 'Dra. Ana Silva',
                 specialty: 'Psicologia',
                 category: 'psicologia',  
-                rating: 4.9,
+                rating: 4.9, 
                 reviews: 127, 
                 description: 'Psicóloga clínica com mais de 10 anos de experiência em terapia cognitivo-comportamental. Especialista em ansiedade, depressão e desenvolvimento pessoal.',
                 image: 'https://static.prod-images.emergentagent.com/jobs/2af4cfcd-82e9-44ee-8c4e-61f5496ec8d5/images/ea2d0d62224300ef931d89a3af67d1a95e07b1be175173f56771f5508f64e620.png',
