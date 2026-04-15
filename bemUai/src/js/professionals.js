@@ -8,7 +8,7 @@ import { stars, fmtDateLong }  from './utils.js';
 import { go, auth }            from './navigation.js';
 import { toast }               from './utils.js'; 
 
-let selCat    = 'all';
+let selCat    = 'all'; 
 let curProf   = null;
 
 export function getCurProf() { return curProf }
