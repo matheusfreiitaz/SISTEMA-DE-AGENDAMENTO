@@ -7,7 +7,7 @@
 .dash-header { 
   background: linear-gradient(135deg, var(--p) 0%, #1A8A6A 55%, #1565A0 100%);
   border-radius: var(--r3); padding: 2.75rem 2.5rem;
-  color: white; margin-bottom: 2rem;
+  color: white; margin-bottom: 2rem; 
   position: relative; overflow: hidden;
   background-size: 200% 200%; animation: gradMove 10s ease infinite;
 }
