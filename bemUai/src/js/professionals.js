@@ -6,7 +6,7 @@
 import { PROFS, REVIEWS }      from './data.js';
 import { stars, fmtDateLong }  from './utils.js';
 import { go, auth }            from './navigation.js';
-import { toast }               from './utils.js';
+import { toast }               from './utils.js'; 
 
 let selCat    = 'all';
 let curProf   = null;
