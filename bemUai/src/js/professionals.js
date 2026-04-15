@@ -10,7 +10,7 @@ import { toast }               from './utils.js';
 
 let selCat    = 'all'; 
 let curProf   = null;
-
+ 
 export function getCurProf() { return curProf }
  
 export function setCat(c) {
