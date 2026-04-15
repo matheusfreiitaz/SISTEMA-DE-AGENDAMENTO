@@ -12,7 +12,7 @@ let selCat    = 'all';
 let curProf   = null;
 
 export function getCurProf() { return curProf }
-
+ 
 export function setCat(c) {
   selCat = c;
   document.querySelectorAll('.cat[data-c]').forEach(el => el.classList.remove('active'));
