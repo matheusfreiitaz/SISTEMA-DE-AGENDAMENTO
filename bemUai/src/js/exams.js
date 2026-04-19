@@ -6,7 +6,7 @@
 import { EXAMS, EXAM_RESULTS, LAUDO_DATA } from './data.js';
 import { toast } from './utils.js';
 import { getUser } from './auth.js'; 
-
+ 
 let examFilter = 'all';
 let curLaudo   = null;
 
