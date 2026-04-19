@@ -8,7 +8,7 @@ import { toast } from './utils.js';
 import { getUser } from './auth.js'; 
  
 let examFilter = 'all';
-let curLaudo   = null;
+let curLaudo   = null; 
 
 export function setExamFilter(f) {
   examFilter = f;
