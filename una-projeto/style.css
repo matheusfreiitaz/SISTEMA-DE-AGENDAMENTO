@@ -4,7 +4,7 @@
             box-sizing: border-box;
         }
 
-        :root { 
+        :root {  
             --primary: #8B5CF6;
             --primary-light: #A78BFA;  
             --primary-dark: #7C3AED; 
