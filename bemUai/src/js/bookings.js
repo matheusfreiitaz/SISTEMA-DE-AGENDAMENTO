@@ -3,7 +3,7 @@
  * Módulo de gerenciamento de agendamentos
  */ 
 
-import { getUser }      from './auth.js';
+import { getUser }      from './auth.js'; 
 import { toast, fmtDateLong, fmtDateShort } from './utils.js';
 import { go }           from './navigation.js';
  
