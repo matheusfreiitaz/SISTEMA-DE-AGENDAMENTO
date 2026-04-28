@@ -1,5 +1,5 @@
 /**
- * bookings.js — BemUai
+ * bookings.js — BemUai 
  * Módulo de gerenciamento de agendamentos
  */ 
 
