@@ -2,7 +2,7 @@
 
 > **Sistema Web de Agendamento Médico e Saúde Integrada**  
 > Versão 2.0 · Atualizado em Março de 2026
-
+ 
 ---
 
  🗂️ Índice
