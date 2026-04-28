@@ -5,7 +5,7 @@
  
 ---
 
- 🗂️ Índice
+ 🗂️ Índice 
 
 1. [Visão Geral do Projeto](#1-visão-geral-do-projeto)
 2. [Tecnologias Utilizadas](#2-tecnologias-utilizadas)
