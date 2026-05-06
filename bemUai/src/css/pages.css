@@ -1,8 +1,8 @@
 /* ══
    PAGES — Dashboard, Chat, Profissionais,
            Agendamento, Exames, Perfil 
-═══*/ 
-  
+═══*/  
+   
 /* ══ HOME / DASHBOARD ══ */
 .dash-header { 
   background: linear-gradient(135deg, var(--p) 0%, #1A8A6A 55%, #1565A0 100%);
