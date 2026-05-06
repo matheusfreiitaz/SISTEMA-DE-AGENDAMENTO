@@ -4,7 +4,7 @@
 
 /* ══ HEADER ══ */
 .header {
-  background: var(--p); color: var(--inv);
+  background: var(--p); color: var(--inv); 
   height: var(--nav-h);
   display: flex; align-items: center;
   position: fixed; top: 0; left: 0; right: 0;
