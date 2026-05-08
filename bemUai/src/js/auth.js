@@ -3,7 +3,7 @@
  * Módulo de autenticação: login, cadastro, logout, validação
  */
 
-import { toast }           from './utils.js';
+import { toast }           from './utils.js'; 
 import { loadBookings, updateStats } from './bookings.js';
 import { syncProfileToggles }        from './a11y.js';
 
