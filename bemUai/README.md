@@ -107,6 +107,4 @@ Todos os dados são salvos em `localStorage` — não há backend:
 | `bU_dys` | Fonte para dislexia |
 | `bU_motion` | Reduzir animações |
 
-## 📄 Licença
 
-MIT © 2026 BemUai
