@@ -5,7 +5,7 @@
 
 import { toast }           from './utils.js'; 
 import { loadBookings, updateStats } from './bookings.js';
-import { syncProfileToggles }        from './a11y.js';
+import { syncProfileToggles }        from './a11y.js'; 
 
 let user = null;
 let loginMode = true;
