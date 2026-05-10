@@ -3,7 +3,7 @@
  * Funções utilitárias compartilhadas
  */
 
-/** Exibe um toast de notificação */
+/** Exibe um toast de notificação */ 
 export function toast(msg, type = 'ok') {
   const icons = { ok: 'fa-circle-check', err: 'fa-circle-xmark', warn: 'fa-triangle-exclamation' };
   const el = document.createElement('div');
