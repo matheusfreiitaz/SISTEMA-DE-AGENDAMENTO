@@ -5,7 +5,7 @@
 
 /** Exibe um toast de notificação */ 
 export function toast(msg, type = 'ok') {
-  const icons = { ok: 'fa-circle-check', err: 'fa-circle-xmark', warn: 'fa-triangle-exclamation' };
+  const icons = { ok: 'fa-circle-check', err: 'fa-circle-xmark', warn: 'fa-triangle-exclamation' }; 
   const el = document.createElement('div');
   el.className = `toast ${type}`;
   el.setAttribute('role', 'alert');
