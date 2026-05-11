@@ -15,7 +15,7 @@
             {
                 id: 2,
                 name: 'Dr. Carlos Mendes',
-                specialty: 'Fisioterapia',
+                specialty: 'Fisioterapia', 
                 category: 'fisioterapia',
                 rating: 4.8,
                 reviews: 94,
