@@ -4,7 +4,7 @@
             { 
                 id: 1,
                 name: 'Dra. Ana Silva',
-                specialty: 'Psicologia',   
+                specialty: 'Psicologia',    
                 category: 'psicologia',  
                 rating: 4.9,  
                 reviews: 127, 
